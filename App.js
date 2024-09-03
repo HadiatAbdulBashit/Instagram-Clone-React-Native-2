@@ -62,9 +62,9 @@ const App = () => {
 		sheetRef.current?.close();
 	}, []);
 
-	const handleOpenPress = useCallback(() => {
-		sheetRef.current?.open();
-	}, []);
+	// const handleOpenPress = useCallback(() => {
+	// 	sheetRef.current?.open();
+	// }, []);
 
 	// Return null while fonts are loading or an error occurs
 	if (!fontsLoaded && !fontError) {
@@ -119,7 +119,7 @@ const App = () => {
 								snapPoints={snapPoints}
 								onChange={handleSheetChange}
 							>
-								<Comments />
+								<Comments handleClosePress={handleClosePress} />
 							</BottomSheet>
 						</View>
 					</TamaguiProvider>

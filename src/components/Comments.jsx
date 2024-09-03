@@ -8,6 +8,8 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
+import { FontAwesome6 } from "@expo/vector-icons";
+
 import ReusableStoryAvatar from "./reusable/ReusableStoryAvatar";
 import getPostDateText from "../utils/postDateText";
 
@@ -40,9 +42,18 @@ const data = [
 		postDate: Date.now() - 60 * 60 * 24 * 1000 * 199,
 		hasActiveStory: true,
 	},
+	{
+		username: "lkjasdf",
+		imageUrl:
+			"https://i.pinimg.com/736x/e8/02/e7/e802e799104b921a6b6520b01032abd4.jpg",
+		comment:
+			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, temporibus, aliquam reprehenderit ut soluta quis amet non architecto at commodi a nisi. Provident repellendus expedita, eos quas consequatur nihil facilis est hic deserunt assumenda quo perspiciatis esse ratione ad ex eum sint unde. Illum, perferendis distinctio beatae at eum quidem. At sequi quae nulla odit praesentium exercitationem quas nihil soluta aspernatur nemo eligendi reiciendis quam, ipsa ratione laborum, voluptatibus nisi a quis facere. A laboriosam, illo quis quaerat porro, eaque facere impedit odit incidunt ea animi quasi quas! Soluta eaque recusandae expedita dolores.",
+		postDate: Date.now() - 60 * 60 * 24 * 1000 * 199,
+		hasActiveStory: true,
+	},
 ];
 
-const Comments = () => {
+const Comments = ({ handleClosePress }) => {
 	const renderItem = useCallback(({ item }) => {
 		const postDateText = getPostDateText(item.postDate);
 		return (
@@ -89,6 +100,20 @@ const Comments = () => {
 
 	return (
 		<>
+			<View
+				style={{
+					flexDirection: "row",
+					padding: 16,
+					justifyContent: "space-between",
+					alignItems: "center",
+				}}
+			>
+				<TouchableOpacity onPress={() => handleClosePress()}>
+					<FontAwesome6 name='arrow-left' size={24} color='black' />
+				</TouchableOpacity>
+				<Text style={{ fontSize: 24, fontWeight: "bold" }}>Comments</Text>
+				<FontAwesome6 name='paper-plane' size={24} color='black' />
+			</View>
 			<BottomSheetFlatList
 				data={data}
 				keyExtractor={(i) => i.username}
