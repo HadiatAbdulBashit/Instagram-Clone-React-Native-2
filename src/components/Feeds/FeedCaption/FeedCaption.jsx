@@ -14,24 +14,20 @@ const FeedCaption = (props) => {
 		<View
 			style={{ flexDirection: "row", marginVertical: 10, flexWrap: "wrap" }}
 		>
-			<Text>
-				<Text style={{ fontWeight: "bold" }}>{props.item.username} </Text>
-				<Text
-					numberOfLines={showAll ? 0 : 2}
-					style={{ fontWeight: "normal" }}
-					onPress={showAll && moreHandler}
-				>
+			<Text numberOfLines={showAll ? 0 : 2} style={{ fontWeight: "bold" }}>
+				{props.item.username + " "}
+				<Text style={{ fontWeight: "normal" }} onPress={moreHandler}>
 					{props.item.feed.caption}
 				</Text>
-				{showAll === false && (
-					<TouchableOpacity
-						style={{ alignItems: "center" }}
-						onPress={moreHandler}
-					>
-						<Text style={{ color: "gray" }}>more</Text>
-					</TouchableOpacity>
-				)}
 			</Text>
+			{showAll === false && (
+				<TouchableOpacity
+					style={{ alignItems: "center" }}
+					onPress={moreHandler}
+				>
+					<Text style={{ color: "gray" }}>more</Text>
+				</TouchableOpacity>
+			)}
 		</View>
 	);
 };

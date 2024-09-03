@@ -4,10 +4,10 @@ import { Text, TouchableOpacity, View } from "react-native";
 const HeaderLeftSide = () => (
 	<Text
 		style={{
-			fontSize: 20,
+			fontSize: 35,
 			fontFamily: "StyleScript-Regular",
 			textAlignVertical: "center",
-			paddingVertical: 10,
+			// paddingVertical: 10,
 		}}
 	>
 		Instagram

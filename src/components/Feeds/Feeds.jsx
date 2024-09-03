@@ -3,32 +3,9 @@ import FeedHeader from "./FeedHeader";
 import FeedActions from "./FeedActions";
 import FeedLikes from "./FeedLikes";
 import FeedCaption from "./FeedCaption";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+import getPostDateText from "../../utils/postDateText";
 
-dayjs.extend(relativeTime);
-
-const getPostDateText = (dateUnix) => {
-	const currentDate = dayjs(Date.now());
-	const weeksCount = currentDate.diff(dateUnix, "week");
-	// jika dalam hari yang sama maka hours ago
-	// jika kemarin maka yesterday
-	// masih dalam seminggu, days ago
-	if (weeksCount < 1) {
-		return dayjs(dateUnix).fromNow();
-	}
-	const yearsCount = currentDate.diff(dateUnix, "year");
-	// kalau dalam tahun yang sama maka misal April 21
-	if (yearsCount < 1) {
-		return dayjs(dateUnix).format("MMMM YY");
-	}
-	// kalau beda tahun maka December 8, 2023
-	else {
-		return dayjs(dateUnix).format("MMMM D, YYYY");
-	}
-};
-
-const Feeds = () => {
+const Feeds = ({ showComment }) => {
 	// props.item
 	const Feed = (props) => {
 		const postDateText = getPostDateText(props.item.feed.postDate);
@@ -49,7 +26,7 @@ const Feeds = () => {
 				<FeedLikes {...props} />
 				<View style={{ paddingHorizontal: 8 }}>
 					<FeedCaption {...props} />
-					<TouchableOpacity>
+					<TouchableOpacity onPress={() => showComment(2)}>
 						<Text style={{ color: "gray" }}>
 							View All {props.item.feed.totalComments} Comments
 						</Text>
